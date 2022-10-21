@@ -10,14 +10,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import fr.rflv.appaurion.databinding.ActivityMainBinding
+import fr.rflv.appaurion.services.aurion.Aurion
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.get
 import org.koin.core.context.GlobalContext.startKoin
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val aurionService : Aurion by inject()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,8 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
+        aurionService.sayHello();
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
