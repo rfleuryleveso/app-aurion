@@ -5,7 +5,7 @@ interface Aurion {
     fun sayHello();
 }
 
-class AurionImpl : Aurion {
+open class AurionImpl : Aurion {
     override fun sayHello() {
         println("Hello world")
     }
