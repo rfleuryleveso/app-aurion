@@ -10,4 +10,5 @@ interface Course {
     val courseType: String;
     val rooms: Array<String>;
     val groups: Array<String>
+    val name: String;
 }
