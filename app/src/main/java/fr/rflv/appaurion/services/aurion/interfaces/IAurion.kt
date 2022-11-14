@@ -1,8 +1,9 @@
 package fr.rflv.appaurion.services.aurion.interfaces
 
-import org.koin.core.component.KoinComponent
+import fr.rflv.appaurion.services.aurion.models.Course
+import fr.rflv.appaurion.services.aurion.models.Mark
 
-interface IAurion  {
-    fun getAllCourses(): Array<String>;
-    fun getAllMarks(): Array<String>;
+interface IAurion {
+    fun getAllCourses(): ArrayList<Course>;
+    fun getAllMarks(): ArrayList<Mark>;
 }
