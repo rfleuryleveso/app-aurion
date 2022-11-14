@@ -7,7 +7,4 @@ import fr.rflv.appaurion.services.aurion.models.Student
 interface IAurion {
     fun getAllCourses(): ArrayList<Course>;
     fun getAllMarks(): ArrayList<Mark>;
-
-    // delete after
-    fun getAllStudents(): ArrayList<Student>;
 }

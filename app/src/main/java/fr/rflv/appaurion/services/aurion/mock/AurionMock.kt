@@ -4,6 +4,7 @@ import fr.rflv.appaurion.services.aurion.interfaces.IAurion
 import fr.rflv.appaurion.services.aurion.models.Course
 import fr.rflv.appaurion.services.aurion.models.Mark
 import fr.rflv.appaurion.services.aurion.models.Student
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import org.koin.core.annotation.Single
 
@@ -147,31 +148,140 @@ open class AurionMock : IAurion {
         courses.add(course9);
 
         val course10 = object : Course {
-            override val start: LocalDateTime = LocalDateTime(2022, 11, 18, 13, 30)
-            override val end: LocalDateTime = LocalDateTime(2022, 11, 17, 15, 30)
-            override val teachers: Array<String> = arrayOf("HABIB Carol", "SALIM Christian")
-            override val students: Array<String> = arrayOf("BRELLE", "BUCHWALD", "CAPTAL", "CARAYOL", "CHANTALOUP", "CONTOIS"
-                , "COUCHY", "COUROUBLE", "COUSIN", "CRESPEL", "CUGNART", "DEFEVER", "DEFFRENNES", "DEFOUG", "DELEHONTE",
-                "DELPIERRE", "DELRUE", "DELZENNE", "DEMAY", "DEMNATI", "GOUTORBE", "HENSGEN","HER", "HERBIN", "HORNAIN",
-                "HUL", "IGUIDER", "ITLY", "JADID", "JAMELOT", "JASPART", "JEAN-DE-DIEU", "KLEIN", "KLOPOCKI", "LAROUZIERE",
-                "LEBRUN", "LEFEBVRE", "LEGRAND", "LEMAITRE", "LEPERS", "LOOS", "MAAROUF", "MACKOWIAK", "MACKOWIAK",
-                "MARCHAND", "MARIAGE", "MILLIEN", "MONTEGNIES", "PARMENTIER", "PIEKARZ", "POTEZ", "REYNAL DE SAINT MICHEL",
-                "SAUVAGE", "TALHA", "VAN HONACKER", "VERBEKE", "VEROLLEMAN", "YOUSSEFI", "ZERRARI")
-            override val courseType: String = "Partiel avec Surveillance"
-            override val rooms: Array<String> = arrayOf("ISEN_C304_H")
+            override val start: LocalDateTime = LocalDateTime(2022, 11, 18, 10, 20)
+            override val end: LocalDateTime = LocalDateTime(2022, 11, 18, 12, 25)
+            override val teachers: Array<String> = arrayOf("COATES Anthony")
+            override val students: Array<String> = arrayOf("ARVELADZE", "BATTUT", "BERNARD", "BRELLE", "DEBAISIEUX", "DE CORDOBA GOZALVEZ"
+                , "GEORGES", "GIRAUD", "GUIRAUD", "HENEMAN", "IGUIDER", "DEFEVER", "DEFFRENNES", "ITLY", "JADID",
+                "LAROUZIERE", "LEFEBVRE", "LEMAITRE", "LORIDAN", "NABILI", "NKOUONJOM YAIN", "PIEKARZ","ROUBISCOUL", "SALCEDO LEÓN", "SAUVAGE",
+                "SEREUSE", "THILLOU", "TOURNEUR", "T'SERSTEVENS", "TSOY", "VANDERHAEGEN", "VANWORMHOUDT", "VILLAIN", "ZAWADZKI", "VAN HONACKER", "YOUSSEFI")
+            override val courseType: String = "Cours/TD"
+            override val rooms: Array<String> = arrayOf("ISEN_A919")
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
-            override val name: String = "Module de Base Python Scripting"
+            override val name: String = "Module d'Ouverture Intercultural Communication (S1)"
         }
         courses.add(course10);
+
+        val course11 = object : Course {
+            override val start: LocalDateTime = LocalDateTime(2022, 11, 18, 13, 30)
+            override val end: LocalDateTime = LocalDateTime(2022, 11, 18, 17, 15)
+            override val teachers: Array<String> = arrayOf("BENABBAS Yassine")
+            override val students: Array<String> = arrayOf("BAPTISTE", "BONNAFOUS",
+                "CHARLET", "CHEVET", "CONTOIS", "COUSIN", "CRESPEL", "DEFFRENNES",
+                "DELESTRET", "DELPIERRE", "DUMAS", "DUVERGER", "FLEURY - LE VESO",
+                "FOURNET", "GROUX", "HER", "JASPART", "MARCHAND", "MAREEL", "MARIAGE",
+                "MILLIEN", "PAWLICKI", "PETIT", "PIVETTE", "POTEZ", "RASCLE", "SINGEOT-SOUSA",
+                "SMETS", "TALIB", "THUILLIER", "VANBAELINGHEM", "VANDERHAEGEN", "VERBEKE",
+                "VILLAIN", "YANG", "YOUSSEFI", "ZHOU")
+            override val courseType: String = "Cours/TD"
+            override val rooms: Array<String> = arrayOf("ISEN_A919")
+            override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
+            override val name: String = "Module de Base Développement Android"
+        }
+        courses.add(course11);
+
+        val course12 = object : Course {
+            override val start: LocalDateTime = LocalDateTime(2022, 11, 21, 9, 0)
+            override val end: LocalDateTime = LocalDateTime(2022, 11, 21, 12, 0)
+            override val teachers: Array<String> = arrayOf("Vincent REYNAERT")
+            override val students: Array<String> = arrayOf("CRESPEL", "DEFFRENNES", "HER", "SEREUSE", "VANDERHAEGEN")
+            override val courseType: String = "Cours/TD"
+            override val rooms: Array<String> = arrayOf("ISEN_B801")
+            override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
+            override val name: String = "Module Game Development - Unity 3D"
+        }
+        courses.add(course12);
+
+        val course13 = object : Course {
+            override val start: LocalDateTime = LocalDateTime(2022, 11, 21, 13, 30)
+            override val end: LocalDateTime = LocalDateTime(2022, 11, 21, 17, 30)
+            override val teachers: Array<String> = arrayOf("Vincent REYNAERT")
+            override val students: Array<String> = arrayOf("CRESPEL", "DEFFRENNES", "HER", "SEREUSE", "VANDERHAEGEN")
+            override val courseType: String = "Cours/TD"
+            override val rooms: Array<String> = arrayOf("ISEN_B801")
+            override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
+            override val name: String = "Module Game Development - Unity 3D"
+        }
+        courses.add(course13);
 
         return courses;
     }
 
     override fun getAllMarks(): ArrayList<Mark> {
-        return ArrayList<Mark>();
-    }
+        val marks = ArrayList<Mark>();
 
-    override fun getAllStudents(): ArrayList<Student> {
-        return ArrayList<Student>();
+        val mark1 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 6, 21)
+            override val id: String = "2122_ISEN_3A_S2_PROJET_DEV_LOGICIEL_EVAL"
+            override val name: String = "Evaluation du Projet Développement Logiciel"
+            override val mark: Float = 18.00f
+            override val coefficient: Number = 1
+        }
+        marks.add(mark1);
+
+        val mark2 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 19)
+            override val id: String = "2122_ISEN_3A_S2_AUTOMATIQUE_PARTIEL"
+            override val name: String = "Partiel d'Automatique"
+            override val mark: Float = 12.00f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark2);
+
+        val mark3 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 18)
+            override val id: String = "\t2122_ISEN_3A_S2_INFO_BDD_RES_PARTIEL"
+            override val name: String = "Partiel d'Informatique - Base de Données et Réseaux"
+            override val mark: Float = 14.15f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark3);
+
+        val mark4 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 18)
+            override val id: String = "2122_ISEN_3A_S2_SYSELEC_PARTIEL"
+            override val name: String = "Partiel de Systèmes Electroniques"
+            override val mark: Float = 8.74f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark4);
+
+        val mark5 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 17)
+            override val id: String = "2122_ISEN_3A_S2_PSOL_PARTIEL"
+            override val name: String = "Partiel de Physique du Solide"
+            override val mark: Float = 14.50f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark5);
+
+        val mark6 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 16)
+            override val id: String = "2122_ISEN_3A_S2_ANSIGIM_PARTIEL"
+            override val name: String = "Partiel d'Analyse des Signaux et des Images"
+            override val mark: Float = 20.00f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark6);
+
+        val mark7 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 16)
+            override val id: String = "2122_ISEN_3A_S2_ANSIGIM_TP"
+            override val name: String = "Evaluation des Travaux Pratiques d'Analyse des Signaux et des Images"
+            override val mark: Float = 19.00f
+            override val coefficient: Number = 100
+        }
+        marks.add(mark7);
+
+        val mark8 = object : Mark {
+            override val date: LocalDate = LocalDate(2022, 5, 16)
+            override val id: String = "2122_ISEN_3A_S2_ECO_PARTIEL"
+            override val name: String = "Partiel d'économie d'entreprise"
+            override val mark: Float = 15.00f
+            override val coefficient: Number = 1
+        }
+        marks.add(mark8);
+
+        return marks;
     }
 }
