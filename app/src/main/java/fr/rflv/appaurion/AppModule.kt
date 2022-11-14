@@ -1,13 +1,17 @@
 package fr.rflv.appaurion
 
-import fr.rflv.appaurion.services.aurion.Aurion
-import fr.rflv.appaurion.services.aurion.AurionImpl
-import fr.rflv.appaurion.services.aurion.AurionRequest
-import fr.rflv.appaurion.services.aurion.AurionRequestImpl
-import org.koin.core.scope.get
+import fr.rflv.appaurion.services.aurion.impl.AurionImpl
+import fr.rflv.appaurion.services.aurion.impl.AurionRequestImpl
+import fr.rflv.appaurion.services.aurion.impl.AurionStateImpl
+import fr.rflv.appaurion.services.aurion.interfaces.IAurion
+import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
+import fr.rflv.appaurion.services.aurion.interfaces.IAurionState
 import org.koin.dsl.module
 
-val appModule = module {
-    single<Aurion> { AurionImpl() }
-    single<AurionRequest> { AurionRequestImpl() }
+
+val AppModule = module {
+    single<IAurion> { AurionImpl() }
+    single<IAurionRequest> { AurionRequestImpl(get()) }
+    single<IAurionState> { AurionStateImpl() }
+
 }

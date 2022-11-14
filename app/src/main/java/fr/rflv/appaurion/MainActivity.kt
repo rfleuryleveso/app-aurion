@@ -10,8 +10,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import fr.rflv.appaurion.databinding.ActivityMainBinding
-import fr.rflv.appaurion.services.aurion.Aurion
-import fr.rflv.appaurion.services.aurion.AurionRequest
+import fr.rflv.appaurion.services.aurion.TestAurionRunnable
+import fr.rflv.appaurion.services.aurion.interfaces.IAurion
+import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -21,20 +22,9 @@ import org.koin.core.context.GlobalContext.startKoin
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val aurionService: Aurion by inject()
-    private val aurionRequest: AurionRequest by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        startKoin {
-            // Log Koin into Android logger
-            androidLogger()
-            // Reference Android context
-            androidContext(this@MainActivity)
-            // Load modules
-            modules(appModule)
-        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -51,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
+        val threadWithRunnable = Thread(TestAurionRunnable())
+        threadWithRunnable.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
