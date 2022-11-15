@@ -9,97 +9,104 @@
         android:id="@+id/beginning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="35dp"
         android:text="10:20"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     <TextView
         android:id="@+id/end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="35dp"
         android:text="12:25"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/beginning" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="277dp"
         android:layout_height="148dp"
+        android:layout_marginTop="260dp"
         android:layout_marginEnd="28dp"
-        app:cardBackgroundColor="#E5EEED"
-        app:cardCornerRadius="20dp"
+        android:background="@drawable/background_course"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/beginning">
-
-        <TextView
-            android:id="@+id/subject2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="49dp"
-            android:layout_marginBottom="46dp"
-            android:text="B305"
-            android:textColor="#212525"
-            android:textSize="15sp"
-            android:translationY="82dp" />
-
-        <TextView
-            android:id="@+id/teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="M. Chênevert"
-            android:textColor="#212525"
-            android:textSize="15sp"
-            android:translationX="49dp"
-            android:translationY="103dp" />
-
-        <TextView
-            android:id="@+id/type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Cours"
-            android:textColor="#212525"
-            android:textSize="15sp"
-            android:translationX="22dp"
-            android:translationY="39dp" />
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="15dp"
             android:text="Mathématiques"
             android:textColor="#212525"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:translationX="22dp"
-            android:translationY="18dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="4dp"
+            android:text="Cours"
+            android:textColor="#212525"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subject" />
 
         <ImageView
             android:id="@+id/localisation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="27dp"
-            android:translationY="84dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/type"
             app:srcCompat="@drawable/localisation" />
+
+        <TextView
+            android:id="@+id/subject2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="17dp"
+            android:text="B305"
+            android:textColor="#212525"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/localisation"
+            app:layout_constraintTop_toBottomOf="@+id/type" />
 
         <ImageView
             android:id="@+id/profil"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:translationX="25dp"
-            android:translationY="110dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="11dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/localisation"
             app:srcCompat="@drawable/profil" />
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/teacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:text="M. Chênevert"
+            android:textColor="#212525"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/profil"
+            app:layout_constraintTop_toBottomOf="@+id/subject2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

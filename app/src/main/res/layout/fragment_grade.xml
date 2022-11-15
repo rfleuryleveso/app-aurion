@@ -3,80 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/grade">
+    android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="364dp"
-        android:layout_height="148dp"
-        app:cardBackgroundColor="#E5EEED"
-        app:cardCornerRadius="20dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="365dp"
+        android:layout_height="89dp"
+        android:background="@drawable/background_grade"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="260dp">
-
-        <TextView
-            android:id="@+id/subject2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="49dp"
-            android:layout_marginBottom="46dp"
-            android:text="B305"
-            android:textColor="#212525"
-            android:textSize="15sp"
-            android:translationY="82dp" />
-
-        <TextView
-            android:id="@+id/teacher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="M. Chênevert"
-            android:textColor="#212525"
-            android:textSize="15sp"
-            android:translationX="49dp"
-            android:translationY="103dp" />
+        tools:layout_editor_absoluteY="345dp">
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="10dp"
             android:text="Date"
             android:textColor="#212525"
             android:textSize="15sp"
-            android:translationX="22dp"
-            android:translationY="45dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subject" />
+
+        <TextView
+            android:id="@+id/mean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:text="Moy: 15.76"
+            android:textColor="#212525"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/date" />
 
         <TextView
             android:id="@+id/subject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="18dp"
             android:text="Matière"
             android:textColor="#212525"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:translationX="22dp"
-            android:translationY="18dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/localisation"
+        <TextView
+            android:id="@+id/subject4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="27dp"
-            android:translationY="84dp"
-            app:srcCompat="@drawable/localisation" />
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="22dp"
+            android:text="14.75"
+            android:textColor="#212525"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/profil"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:translationX="25dp"
-            android:translationY="110dp"
-            app:srcCompat="@drawable/profil" />
-
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
