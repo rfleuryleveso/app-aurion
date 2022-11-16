@@ -1,10 +1,9 @@
 package fr.rflv.appaurion.services.aurion.impl
 
-import fr.rflv.appaurion.services.aurion.impl.parsers.extractViewState
-import fr.rflv.appaurion.services.aurion.impl.parsers.extractViewStateFromPartial
-import fr.rflv.appaurion.services.aurion.impl.parsers.parsePartialPlanning
+import fr.rflv.appaurion.services.aurion.impl.parsers.*
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionState
+import kotlinx.datetime.*
 import okhttp3.FormBody
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
@@ -13,6 +12,7 @@ import org.jsoup.Jsoup
 import java.io.IOException
 import java.net.CookieManager
 import java.net.CookiePolicy
+import java.time.format.DateTimeFormatter
 
 
 class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest {
@@ -94,21 +94,30 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
         }
     }
 
-    override fun GetPlanningPartial() {
+    override fun GetPlanningPartial(
+        start: LocalDateTime,
+        end: LocalDateTime
+    ): ArrayList<CoursesListCourse> {
+        val dateInput =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy").format(start.toJavaLocalDateTime())
+        val week = DateTimeFormatter.ofPattern("ww-yyyy").format(start.toJavaLocalDateTime())
         val formBody = FormBody.Builder()
             .add("javax.faces.partial.ajax", "true")
             .add("javax.faces.source", "form:j_idt117")
             .add("javax.faces.partial.execute", "form:j_idt117")
             .add("javax.faces.partial.render", "form:j_idt117")
             .add("form:j_idt117", "form:j_idt117")
-            .add("form:j_idt117_start", "1668380400000")
-            .add("form:j_idt117_end", "1668898800000")
+            .add(
+                "form:j_idt117_start",
+                start.toInstant(TimeZone.UTC).toEpochMilliseconds().toString()
+            )
+            .add("form:j_idt117_end", end.toInstant(TimeZone.UTC).toEpochMilliseconds().toString())
             .add("form", "form")
             .add("form:largeurDivCenter", "")
-            .add("form:date_input", "14/11/2022")
-            .add("form:week", "46-2022")
+            .add("form:date_input", dateInput)
+            .add("form:week", week)
             .add("form:j_idt117_view", "agendaWeek")
-            .add("form:offsetFuseauNavigateur", "-3600000")
+            .add("form:offsetFuseauNavigateur", "0")
             .add("form:onglets_activeIndex", "0")
             .add("form:onglets_scrollState", "0")
             .add("form:j_idt236_focus", "")
@@ -125,7 +134,36 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
         client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) throw IOException("Unexpected code $response")
             val body: String = response.body!!.string();
-            parsePartialPlanning(body);
+            val partialPlanningResult = parsePartialPlanning(body);
+            this.aurionState.setState(partialPlanningResult.viewState)
+            return partialPlanningResult.courses;
+        }
+    }
+
+    override fun GetPlanningEventDetail(eventId: String): ParseEventPartialResult {
+       val formBody = FormBody.Builder()
+            .add("javax.faces.partial.ajax", "true")
+            .add("javax.faces.source", "form:j_idt117")
+            .add("javax.faces.partial.execute", "form:j_idt117")
+            .add("javax.faces.partial.render", "form:modaleDetail form:confirmerSuppression")
+            .add("javax.faces.behavior.event", "eventSelect")
+            .add("javax.faces.partial.event", "eventSelect")
+            .add("form:j_idt117_selectedEventId", eventId)
+            .add("javax.faces.ViewState", this.aurionState.getState())
+
+            .build()
+
+        val request = Request.Builder()
+            .post(formBody)
+            .url("https://aurion.junia.com/faces/Planning.xhtml")
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+            val body: String = response.body!!.string();
+            val partialPlanningResult = parseEventPartial(body);
+            this.aurionState.setState(partialPlanningResult.viewState)
+            return partialPlanningResult;
         }
     }
 }

@@ -2,7 +2,7 @@ package fr.rflv.appaurion.services.aurion.models
 
 import kotlinx.datetime.LocalDateTime
 
-interface Course {
+interface ICourse {
     val start: LocalDateTime;
     val end: LocalDateTime;
     val teachers: Array<String>;

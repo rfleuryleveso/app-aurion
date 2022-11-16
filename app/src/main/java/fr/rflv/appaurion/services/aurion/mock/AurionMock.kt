@@ -1,9 +1,8 @@
 package fr.rflv.appaurion.services.aurion.mock
 
 import fr.rflv.appaurion.services.aurion.interfaces.IAurion
-import fr.rflv.appaurion.services.aurion.models.Course
+import fr.rflv.appaurion.services.aurion.models.ICourse
 import fr.rflv.appaurion.services.aurion.models.Mark
-import fr.rflv.appaurion.services.aurion.models.Student
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import org.koin.core.annotation.Single
@@ -12,10 +11,10 @@ import org.koin.core.annotation.Single
 @Single
 open class AurionMock : IAurion {
 
-    override fun getAllCourses(): ArrayList<Course> {
-        val courses = ArrayList<Course>();
+    override fun getAllCourses(): ArrayList<ICourse> {
+        val cours = ArrayList<ICourse>();
 
-        val course1 = object : Course {
+        val ICourse1 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 14, 9, 0)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 14, 12, 0)
             override val teachers: Array<String> = arrayOf("Vincent REYNAERT")
@@ -25,9 +24,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         }
-        courses.add(course1);
+        cours.add(ICourse1);
 
-        val course2 = object : Course {
+        val ICourse2 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 14, 12, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 14, 13, 30)
             override val teachers: Array<String> = arrayOf("LAMBERT Yannick", "LITTON Evelyne")
@@ -43,9 +42,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Réunion"
         }
-        courses.add(course2);
+        cours.add(ICourse2);
 
-        val course3 = object : Course {
+        val ICourse3 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 14, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 14, 17, 30)
             override val teachers: Array<String> = arrayOf("REYNAERT Vincent")
@@ -55,9 +54,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         }
-        courses.add(course3);
+        cours.add(ICourse3);
 
-        val course4 = object : Course {
+        val ICourse4 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 15, 8, 0)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 15, 10, 30)
             override val teachers: Array<String> = arrayOf("BEN AHMED Elhem")
@@ -73,9 +72,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("M1- Contrôle de Gestion - Groupe A")
             override val name: String = "Module FHES Contrôle de Gestion"
         }
-        courses.add(course4);
+        cours.add(ICourse4);
 
-        val course5 = object : Course {
+        val ICourse5 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 15, 10, 20)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 15, 12, 25)
             override val teachers: Array<String> = arrayOf("COATES Antony")
@@ -87,9 +86,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("M1 - Anglais Communication Skills Groupe A (niv B2 déjà)")
             override val name: String = "Module d'Anglais "
         }
-        courses.add(course5);
+        cours.add(ICourse5);
 
-        val course6 = object : Course {
+        val ICourse6 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 15, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 15, 17, 15)
             override val teachers: Array<String> = arrayOf("IHADDADENE Nacim")
@@ -103,9 +102,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Intelligence Artificielle"
         }
-        courses.add(course6);
+        cours.add(ICourse6);
 
-        val course7 = object : Course {
+        val ICourse7 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 16, 9, 0)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 16, 12, 0)
             override val teachers: Array<String> = arrayOf("ESTEVES Aurélien")
@@ -115,9 +114,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Network"
         }
-        courses.add(course7);
+        cours.add(ICourse7);
 
-        val course8 = object : Course {
+        val ICourse8 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 16, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 16, 17, 30)
             override val teachers: Array<String> = arrayOf("ESTEVES Aurélien")
@@ -127,9 +126,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Network"
         }
-        courses.add(course8);
+        cours.add(ICourse8);
 
-        val course9 = object : Course {
+        val ICourse9 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 17, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 17, 15, 30)
             override val teachers: Array<String> = arrayOf("HABIB Carol", "SALIM Christian")
@@ -145,9 +144,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Python Scripting"
         }
-        courses.add(course9);
+        cours.add(ICourse9);
 
-        val course10 = object : Course {
+        val ICourse10 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 18, 10, 20)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 18, 12, 25)
             override val teachers: Array<String> = arrayOf("COATES Anthony")
@@ -160,9 +159,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module d'Ouverture Intercultural Communication (S1)"
         }
-        courses.add(course10);
+        cours.add(ICourse10);
 
-        val course11 = object : Course {
+        val ICourse11 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 18, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 18, 17, 15)
             override val teachers: Array<String> = arrayOf("BENABBAS Yassine")
@@ -178,9 +177,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Développement Android"
         }
-        courses.add(course11);
+        cours.add(ICourse11);
 
-        val course12 = object : Course {
+        val ICourse12 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 21, 9, 0)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 21, 12, 0)
             override val teachers: Array<String> = arrayOf("Vincent REYNAERT")
@@ -190,9 +189,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         }
-        courses.add(course12);
+        cours.add(ICourse12);
 
-        val course13 = object : Course {
+        val ICourse13 = object : ICourse {
             override val start: LocalDateTime = LocalDateTime(2022, 11, 21, 13, 30)
             override val end: LocalDateTime = LocalDateTime(2022, 11, 21, 17, 30)
             override val teachers: Array<String> = arrayOf("Vincent REYNAERT")
@@ -202,9 +201,9 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         }
-        courses.add(course13);
+        cours.add(ICourse13);
 
-        return courses;
+        return cours;
     }
 
     override fun getAllMarks(): ArrayList<Mark> {
