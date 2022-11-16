@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F2F7F6">
@@ -22,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
-        android:background=""
         android:text="18"
         android:textColor="#212525"
         android:textSize="48sp"
@@ -39,8 +37,8 @@
         android:layout_marginEnd="27dp"
         android:background="@drawable/rounded"
         android:backgroundTint="#87BEB9"
-        android:text="AD"
         android:gravity="center"
+        android:text="AD"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
