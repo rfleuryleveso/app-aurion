@@ -1,12 +1,17 @@
 package fr.rflv.appaurion.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import fr.rflv.appaurion.services.aurion.data.Course
 import fr.rflv.appaurion.services.aurion.interfaces.IAurion
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.datetime.LocalDateTime
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.datetime.*
+import java.time.ZoneId
 
 
 data class ScheduleViewModelState(
@@ -20,6 +25,25 @@ class ScheduleViewModel(private val aurion: IAurion) : ViewModel() {
 
 
     public fun getCoursesForDay(date: LocalDateTime) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val allCourses = aurion.getAllCourses();
+            val filteredCourses = allCourses.filter {
+                it.startDateTime.toInstant(TimeZone.UTC).toJavaInstant().atZone(
+                    ZoneId.systemDefault()
+                ).toLocalDate().isEqual(
+                    Clock.System.now().toJavaInstant().atZone(
+                        ZoneId.systemDefault()
+                    ).toLocalDate()
+                )
+            }.map { Course(it) }.toTypedArray()
+
+            _uiState.update { currentState ->
+                currentState.copy(
+                    courses = filteredCourses
+                )
+            }
+        }
+
 
     }
 }
