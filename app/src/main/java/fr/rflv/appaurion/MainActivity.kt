@@ -10,13 +10,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import fr.rflv.appaurion.databinding.ActivityMainBinding
-import fr.rflv.appaurion.services.aurion.TestAurionRunnable
-import fr.rflv.appaurion.services.aurion.interfaces.IAurion
-import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
-import org.koin.android.ext.android.inject
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.GlobalContext.startKoin
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,8 +34,7 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        val threadWithRunnable = Thread(TestAurionRunnable())
-        threadWithRunnable.start()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

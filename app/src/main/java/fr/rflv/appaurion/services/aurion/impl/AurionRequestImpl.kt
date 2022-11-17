@@ -9,12 +9,13 @@ import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
+import org.koin.core.annotation.Single
 import java.io.IOException
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.time.format.DateTimeFormatter
 
-
+@Single
 class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest {
     private val client: OkHttpClient;
     private val cookieManager = CookieManager();

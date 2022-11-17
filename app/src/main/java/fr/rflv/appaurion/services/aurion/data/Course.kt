@@ -4,8 +4,9 @@ import fr.rflv.appaurion.services.aurion.models.ICourse
 import kotlinx.datetime.LocalDateTime
 
 data class Course(
-    override val start: LocalDateTime,
-    override val end: LocalDateTime,
+    override val id: String,
+    override val startDateTime: LocalDateTime,
+    override val endDateTime: LocalDateTime,
     override val teachers: Array<String>,
     override val students: Array<String>,
     override val courseType: String,
