@@ -17,9 +17,13 @@ import org.koin.dsl.module
 
 
 val AppModule = module {
+<<<<<<< Updated upstream
     single { CoursesDatabaseHelper(androidContext()) }
     single { MarksDatabaseHelper(androidContext()) }
     single<IAurion> { AurionImpl(androidContext(), get(), get()) }
+=======
+    single<IAurion> { AurionImpl(androidContext(), get()) }
+>>>>>>> Stashed changes
     single<IAurionRequest> { AurionRequestImpl(get()) }
     single<IAurionState> { AurionStateImpl() }
     viewModelOf(::GradesViewModel)
