@@ -70,6 +70,11 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/day" />
 
+    <fragment
+        android:name="fr.rflv.appaurion.GradesFragment"
+        android:id="@+id/gradesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/deconnection"
