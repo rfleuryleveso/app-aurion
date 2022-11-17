@@ -35,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
         passwordField = findViewById(R.id.editTextTextPassword)
         progress = findViewById(R.id.progressBar)
 
+        this.loginViewModel.CheckLogin();
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 loginViewModel.uiState.collect {

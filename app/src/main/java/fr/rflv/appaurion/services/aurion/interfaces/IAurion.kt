@@ -9,4 +9,5 @@ interface IAurion {
     fun login(username: String, password: String): Boolean;
     fun getAllCourses(): List<Course>;
     fun getAllMarks(): List<Mark>;
+    fun hasSavedLogins(): Boolean;
 }

@@ -57,9 +57,23 @@ open class AurionImpl(
         return this.marksDatabaseHelper.getMarks().toList();
     }
 
+    override fun hasSavedLogins(): Boolean {
+        val sharedPref = appContext.getSharedPreferences(
+            appContext.getString(R.string.shared_preferences_file),
+            Context.MODE_PRIVATE
+        )
+        val email =
+            sharedPref.getString(appContext.getString(R.string.pref_email_key), "")
+        val password =
+            sharedPref.getString(appContext.getString(R.string.pref_password_key), "")
+
+        return email != null && password != null && email.length > 0 && password.length > 0;
+
+    }
+
     override fun login(username: String, password: String): Boolean {
         val result = this.aurionRequest.Login(username, password);
-        if(result) {
+        if (result) {
             val sharedPref = appContext.getSharedPreferences(
                 appContext.getString(R.string.shared_preferences_file),
                 Context.MODE_PRIVATE

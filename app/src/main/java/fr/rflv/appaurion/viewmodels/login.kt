@@ -20,6 +20,17 @@ class LoginViewModel(private val aurion: IAurion) : ViewModel() {
     private val _uiState = MutableStateFlow(LoginViewModelState())
     val uiState: StateFlow<LoginViewModelState> = _uiState.asStateFlow()
 
+    public fun CheckLogin() {
+        if (aurion.hasSavedLogins()) {
+            _uiState.update { currentState ->
+                currentState.copy(
+                    isLoading = false,
+                    isLoggedIn = true
+                )
+            }
+        }
+    }
+
     public fun Login(email: String, password: String) {
         _uiState.update { currentState ->
             currentState.copy(

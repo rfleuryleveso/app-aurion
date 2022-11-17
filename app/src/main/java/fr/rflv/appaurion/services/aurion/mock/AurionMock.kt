@@ -610,4 +610,8 @@ open class AurionMock : IAurion {
 
         return IMarks.toList();
     }
+
+    override fun hasSavedLogins(): Boolean {
+        TODO("Not yet implemented")
+    }
 }
