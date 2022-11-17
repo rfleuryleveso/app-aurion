@@ -1,5 +1,6 @@
 package fr.rflv.appaurion
 
+import fr.rflv.appaurion.services.aurion.AurionImporter
 import fr.rflv.appaurion.services.aurion.impl.AurionImpl
 import fr.rflv.appaurion.services.aurion.impl.AurionRequestImpl
 import fr.rflv.appaurion.services.aurion.impl.AurionStateImpl
@@ -19,7 +20,8 @@ import org.koin.dsl.module
 val AppModule = module {
     single { CoursesDatabaseHelper(androidContext()) }
     single { MarksDatabaseHelper(androidContext()) }
-    single<IAurion> { AurionImpl(androidContext(), get(), get()) }
+    single { AurionImporter(androidContext()) }
+    single<IAurion> { AurionImpl(androidContext(), get(), get(), get(), get()) }
     single<IAurionRequest> { AurionRequestImpl(get()) }
     single<IAurionState> { AurionStateImpl() }
     viewModelOf(::GradesViewModel)

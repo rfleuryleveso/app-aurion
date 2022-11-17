@@ -30,10 +30,10 @@ class CoursesDatabaseHelper(private val context: Context) {
         db.close()
     }
 
-    fun getCourses(): Array<Course> {
+    fun getCourses(): List<Course> {
         val db = this.database.writableDatabase
         val coursesCursor = db.query("courses", null, null, null, null, null, null)
-        val courses = arrayOf<Course>();
+        val courses = listOf<Course>();
         coursesCursor!!.moveToFirst();
         if (coursesCursor.count > 0) {
             do {

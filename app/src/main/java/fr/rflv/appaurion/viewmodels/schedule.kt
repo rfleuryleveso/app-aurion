@@ -24,17 +24,13 @@ class ScheduleViewModel(private val aurion: IAurion) : ViewModel() {
     val uiState: StateFlow<ScheduleViewModelState> = _uiState.asStateFlow()
 
 
-    public fun getCoursesForDay(date: LocalDateTime) {
+    public fun getCoursesForDay(date: LocalDate) {
         viewModelScope.launch(Dispatchers.IO) {
             val allCourses = aurion.getAllCourses();
             val filteredCourses = allCourses.filter {
                 it.startDateTime.toInstant(TimeZone.UTC).toJavaInstant().atZone(
                     ZoneId.systemDefault()
-                ).toLocalDate().isEqual(
-                    Clock.System.now().toJavaInstant().atZone(
-                        ZoneId.systemDefault()
-                    ).toLocalDate()
-                )
+                ).toLocalDate().toKotlinLocalDate() == date
             }.map { Course(it) }.toTypedArray()
 
             _uiState.update { currentState ->

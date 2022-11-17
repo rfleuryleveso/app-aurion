@@ -32,7 +32,7 @@ class LoginViewModel(private val aurion: IAurion) : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     isLoading = false,
-                    isLoggedIn = true
+                    isLoggedIn = result
                 )
             }
         }

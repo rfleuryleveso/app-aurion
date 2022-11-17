@@ -1,9 +1,10 @@
-package fr.rflv.appaurion
+package fr.rflv.appaurion.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import fr.rflv.appaurion.R
 
 class GradesActivity : AppCompatActivity() {
     private lateinit var deconnectionImage : ImageView

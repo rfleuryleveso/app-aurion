@@ -54,6 +54,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
                 val doc = Jsoup.parse(body);
                 val viewStateValue = extractViewState(doc);
                 this.aurionState.setState(viewStateValue);
+                response.close();
             }
         return true;
 
@@ -92,6 +93,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             val doc = Jsoup.parse(body);
             val viewStateValue = extractViewState(doc);
             this.aurionState.setState(viewStateValue);
+            response.close();
         }
     }
 
@@ -137,6 +139,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             val body: String = response.body!!.string();
             val partialPlanningResult = parsePartialPlanning(body);
             this.aurionState.setState(partialPlanningResult.viewState)
+            response.close();
             return partialPlanningResult.courses;
         }
     }
@@ -164,6 +167,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             val body: String = response.body!!.string();
             val partialPlanningResult = parseEventPartial(body);
             this.aurionState.setState(partialPlanningResult.viewState)
+            response.close();
             return partialPlanningResult;
         }
     }

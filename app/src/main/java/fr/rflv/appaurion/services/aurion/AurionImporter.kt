@@ -10,16 +10,18 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
-class UpdateCoursesDatabaseRunnable(
-    private val context: Context,
-    private val startDate: LocalDateTime,
-    private val endDate: LocalDateTime
-) : Runnable, KoinComponent {
+class AurionImporter(
+    private val context: Context
+) : KoinComponent {
     private val aurionService: IAurion by inject();
     private val aurionRequest: IAurionRequest by inject();
 
-    public override fun run() {
-        val result = aurionRequest.Login("raphael.fleury-le-veso@student.junia.com", "PHOTO534@")
+    fun importFromAurion(
+        login: String, password: String,
+        startDate: LocalDateTime,
+        endDate: LocalDateTime
+    ): List<Course> {
+        val result = aurionRequest.Login(login, password)
         aurionRequest.GetHomePage();
         aurionRequest.SwitchToPlanningView();
         val courses = aurionRequest.GetPlanningPartial(
@@ -30,7 +32,8 @@ class UpdateCoursesDatabaseRunnable(
             val courseDetails = aurionRequest.GetPlanningEventDetail(it.id);
             val details = courseDetails.details;
             val description = details.attributes.find { it -> it.first == "Description" }
-            val eventType = details.attributes.find { it -> it.first == "Type d'enseignement" }
+            val eventType =
+                details.attributes.find { it -> it.first == "Type d'enseignement" }
             val name: String;
             if (description!!.second.length != 0) {
                 name = description.second;
@@ -63,9 +66,9 @@ class UpdateCoursesDatabaseRunnable(
                 name = name
             )
         }
-        val db = CoursesDatabaseHelper(this.context);
+        val db = CoursesDatabaseHelper(context);
         mappedCourses.forEach { db.addCourse(it) }
+        return mappedCourses;
 
-        println("got result")
     }
 }
