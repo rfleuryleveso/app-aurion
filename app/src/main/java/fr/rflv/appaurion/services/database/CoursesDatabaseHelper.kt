@@ -6,7 +6,9 @@ import fr.rflv.appaurion.services.aurion.data.Course
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonPrimitive
+import org.koin.core.annotation.Single
 
+@Single
 class CoursesDatabaseHelper(private val context: Context) {
 
     private val database = Database(context)

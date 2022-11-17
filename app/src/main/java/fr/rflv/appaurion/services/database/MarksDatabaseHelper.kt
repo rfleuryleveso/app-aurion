@@ -4,7 +4,9 @@ import android.content.ContentValues
 import android.content.Context
 import fr.rflv.appaurion.services.aurion.data.Mark
 import kotlinx.datetime.LocalDate
+import org.koin.core.annotation.Single
 
+@Single
 class MarksDatabaseHelper(private val context: Context) {
 
     private val database = Database(context)

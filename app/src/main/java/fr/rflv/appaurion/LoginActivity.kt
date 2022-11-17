@@ -1,13 +1,22 @@
 package fr.rflv.appaurion
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import fr.rflv.appaurion.viewmodels.LoginViewModel
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var  loginButton : Button
+    private lateinit var loginButton: Button
+    private lateinit var emailField: EditText
+    private lateinit var passwordField: EditText
+    val loginViewModel by viewModel<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,10 +26,24 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             connectionToAurion()
         }
+
+        emailField = findViewById(R.id.editTextTextEmailAddress)
+        passwordField = findViewById(R.id.editTextTextPassword)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                loginViewModel.uiState.collect {
+                    if (it.isLoggedIn) {
+                        val connectToAurionIntent: Intent =
+                            Intent(applicationContext, ScheduleActivity::class.java)
+                        startActivity(connectToAurionIntent)
+                    }
+                }
+            }
+        }
     }
 
     private fun connectionToAurion() {
-        val connectToAurionIntent : Intent = Intent(this, ScheduleActivity::class.java)
-        startActivity(connectToAurionIntent)
+        this.loginViewModel.Login(emailField.text.toString(), passwordField.text.toString());
     }
 }

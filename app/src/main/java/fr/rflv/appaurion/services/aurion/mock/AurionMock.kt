@@ -10,6 +10,9 @@ import org.koin.core.annotation.Single
 
 @Single
 open class AurionMock : IAurion {
+    override fun login(username: String, password: String): Boolean {
+        TODO("Not yet implemented")
+    }
 
     override fun getAllCourses(): ArrayList<ICourse> {
         val cours = ArrayList<ICourse>();
