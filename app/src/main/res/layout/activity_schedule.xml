@@ -333,6 +333,12 @@
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
+    <fragment
+        android:name="fr.rflv.appaurion.ScheduleFragment"
+        android:id="@+id/scheduleFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageView
         android:id="@+id/deconnection"
         android:layout_width="27dp"
