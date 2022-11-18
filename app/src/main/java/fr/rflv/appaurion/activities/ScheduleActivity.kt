@@ -1,10 +1,12 @@
 package fr.rflv.appaurion.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,6 +36,14 @@ class ScheduleActivity : AppCompatActivity() {
     private lateinit var saturday: TextView
     private lateinit var sunday: TextView
 
+    private lateinit var mondayCard: CardView
+    private lateinit var tuesdayCard: CardView
+    private lateinit var wednesdayCard: CardView
+    private lateinit var thursdayCard: CardView
+    private lateinit var fridayCard: CardView
+    private lateinit var saturdayCard: CardView
+    private lateinit var sundayCard: CardView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,11 +64,19 @@ class ScheduleActivity : AppCompatActivity() {
         saturday = findViewById(R.id.saturdayDate)
         sunday = findViewById(R.id.sundayDate)
 
-        var days = listOf("Samedi","Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi")
+        mondayCard = findViewById(R.id.mondayCard)
+        tuesdayCard = findViewById(R.id.tuesdayCard)
+        wednesdayCard = findViewById(R.id.wednesdayCard)
+        thursdayCard = findViewById(R.id.thursdayCard)
+        fridayCard = findViewById(R.id.fridayCard)
+        saturdayCard = findViewById(R.id.saturdayCard)
+        sundayCard = findViewById(R.id.sundayCard)
+
+        var days = listOf("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi")
         var months = listOf("Janv.","Févr.","Mars","Avr.","Mai","Juin","Juill.","Août","Sept.","Oct.","Nov.","Déc.")
         val date = Calendar.getInstance()
         dateOfWeek.text = date.get(Calendar.DAY_OF_MONTH).toString()
-        day.text = days[date.get(Calendar.DAY_OF_WEEK)]
+        day.text = days[date.get(Calendar.DAY_OF_WEEK) - 1]
         monthAndYear.text = months[date.get(Calendar.MONTH)] + " " + date.get(Calendar.YEAR)
 
         var i = date.get(Calendar.DAY_OF_WEEK)
@@ -86,6 +104,12 @@ class ScheduleActivity : AppCompatActivity() {
             friday.text = (firstDAyOfWeek + 5).toString()
             saturday.text = (firstDAyOfWeek + 6).toString()
         }
+
+        var colorChange = listOf<CardView>(sundayCard,mondayCard,tuesdayCard,wednesdayCard,thursdayCard,fridayCard,saturdayCard)
+        colorChange[date.get(Calendar.DAY_OF_WEEK) - 1].setBackgroundColor(Color.parseColor("#E03846"))
+
+        var colorChangeText = listOf<TextView>(sunday,monday,tuesday,wednesday,thursday,friday,saturday)
+        colorChangeText[date.get(Calendar.DAY_OF_WEEK) - 1].setTextColor(Color.parseColor("#FFFFFF"))
 
         deconnectionImage.setOnClickListener() {
             finish()
