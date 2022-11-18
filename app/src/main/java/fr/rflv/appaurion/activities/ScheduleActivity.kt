@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import fr.rflv.appaurion.R
+import fr.rflv.appaurion.fragments.ScheduleRecyclerViewFragment
 import fr.rflv.appaurion.viewmodels.ScheduleViewModel
 import kotlinx.coroutines.launch
 import kotlinx.datetime.*
@@ -20,7 +22,6 @@ import java.util.*
 class ScheduleActivity : AppCompatActivity() {
     private lateinit var deconnectionImage: ImageView
     private lateinit var gradesImage: ImageView
-    val scheduleViewModel by viewModel<ScheduleViewModel>()
 
     private lateinit var dateOfWeek: TextView
     private lateinit var day: TextView
@@ -37,6 +38,7 @@ class ScheduleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
+        replaceFragment(ScheduleRecyclerViewFragment())
 
         deconnectionImage = findViewById(R.id.deconnection)
         gradesImage = findViewById(R.id.grades)
@@ -91,20 +93,12 @@ class ScheduleActivity : AppCompatActivity() {
         gradesImage.setOnClickListener() {
             changeToGradesActivity()
         }
-        this.scheduleViewModel.getCoursesForDay(
-            Clock.System.now().toJavaInstant().atZone(
-                ZoneId.systemDefault()
-            ).toLocalDate().toKotlinLocalDate()
-        )
-        lifecycleScope.launch() {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                scheduleViewModel.uiState.collect {
-                    for (course in it.courses) {
-                        //Create a fragment for each course
-                    }
-                }
-            }
-        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout_schedule, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun changeToGradesActivity() {

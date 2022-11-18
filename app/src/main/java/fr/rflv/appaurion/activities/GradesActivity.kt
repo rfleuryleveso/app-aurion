@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import fr.rflv.appaurion.R
+import fr.rflv.appaurion.fragments.GradesRecycleViewFragment
 
 class GradesActivity : AppCompatActivity() {
     private lateinit var deconnectionImage : ImageView
@@ -13,6 +15,7 @@ class GradesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_grades)
+        replaceFragment(GradesRecycleViewFragment())
 
         deconnectionImage = findViewById(R.id.deconnection)
         scheduleImage = findViewById(R.id.calendar)
@@ -24,6 +27,13 @@ class GradesActivity : AppCompatActivity() {
         scheduleImage.setOnClickListener() {
             changeToScheduleActivity()
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment)
+    {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout_grades, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun changeToScheduleActivity() {

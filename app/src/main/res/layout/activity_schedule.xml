@@ -333,11 +333,16 @@
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
-    <fragment
-        android:name="fr.rflv.appaurion.fragments.ScheduleFragment"
-        android:id="@+id/scheduleFragment"
+    <FrameLayout
+        android:id="@+id/frame_layout_schedule"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course">
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/deconnection"
