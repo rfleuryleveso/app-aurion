@@ -16,8 +16,8 @@ class ScheduleAdapter (private val Courses : Array<Course>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentCourse = Courses[position]
-        holder.titleBegin.text = currentCourse.startDateTime.toString()
-        holder.titleEnd.text = currentCourse.endDateTime.toString()
+        holder.titleBegin.text = currentCourse.startDateTime.time.toString()
+        holder.titleEnd.text = currentCourse.endDateTime.time.toString()
         holder.titleSubject.text = currentCourse.name
         holder.titleType.text = currentCourse.courseType
         holder.titleLocalisation.text = currentCourse.rooms.joinToString(" ")

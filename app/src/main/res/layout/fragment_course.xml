@@ -9,11 +9,11 @@
         android:id="@+id/beginning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="35dp"
         android:text="10:20"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     <TextView
@@ -21,11 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="35dp"
         android:text="12:25"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/beginning"
         app:layout_constraintTop_toBottomOf="@+id/beginning" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
