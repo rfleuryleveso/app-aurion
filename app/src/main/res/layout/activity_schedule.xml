@@ -10,11 +10,14 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="419dp"
-        android:layout_height="550dp"
-        android:layout_marginTop="105dp"
+        android:layout_height="510dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/grades"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/initials"
+        app:layout_constraintVertical_bias="0.18"
         app:srcCompat="@drawable/back" />
 
     <TextView
@@ -75,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:text="Heure"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
@@ -87,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:text="Cours"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
@@ -327,8 +330,8 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="s"
             android:textColor="#212525"
+            android:text=""
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
@@ -340,9 +343,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/course">
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/course"/>
 
     <ImageView
         android:id="@+id/deconnection"

@@ -9,11 +9,11 @@
         android:id="@+id/beginning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="20dp"
         android:text="10:20"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
     <TextView
@@ -21,30 +21,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="35dp"
         android:text="12:25"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/beginning"
         app:layout_constraintTop_toBottomOf="@+id/beginning" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="277dp"
-        android:layout_height="148dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/background_course"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="233dp"
+            android:layout_height="0dp"
             android:layout_marginStart="22dp"
             android:layout_marginTop="15dp"
-            android:text="Mathématiques"
+            android:text=""
             android:textColor="#212525"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -68,9 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/type"
+            app:layout_constraintTop_toTopOf="@+id/subject2"
             app:srcCompat="@drawable/localisation" />
 
         <TextView
@@ -90,9 +89,9 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="2dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/localisation"
+            app:layout_constraintTop_toTopOf="@+id/teacher"
             app:srcCompat="@drawable/profil" />
 
         <TextView
@@ -101,9 +100,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
             android:layout_marginTop="6dp"
+            android:layout_marginBottom="20dp"
             android:text="M. Chênevert"
             android:textColor="#212525"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/profil"
             app:layout_constraintTop_toBottomOf="@+id/subject2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
