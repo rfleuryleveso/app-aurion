@@ -2,13 +2,13 @@ package fr.rflv.appaurion.services.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.sqlite.SQLiteConstraintException
 import fr.rflv.appaurion.services.aurion.data.Course
 import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonPrimitive
 import org.koin.core.annotation.Single
-import java.lang.Exception
 
 @Single
 class CoursesDatabaseHelper(private val context: Context) {
@@ -64,11 +64,35 @@ class CoursesDatabaseHelper(private val context: Context) {
                                 )
                             )
                         ),
-                        teachers = arrayOf(),
-                        students = arrayOf(),
+                        teachers = Json.decodeFromString(
+                            coursesCursor.getString(
+                                coursesCursor.getColumnIndexOrThrow(
+                                    "teachers"
+                                )
+                            )
+                        ),
+                        students = Json.decodeFromString(
+                            coursesCursor.getString(
+                                coursesCursor.getColumnIndexOrThrow(
+                                    "students"
+                                )
+                            )
+                        ),
                         courseType = coursesCursor.getString(coursesCursor.getColumnIndexOrThrow("courseType")),
-                        rooms = arrayOf(),
-                        groups = arrayOf(),
+                        rooms = Json.decodeFromString(
+                            coursesCursor.getString(
+                                coursesCursor.getColumnIndexOrThrow(
+                                    "rooms"
+                                )
+                            )
+                        ),
+                        groups = Json.decodeFromString(
+                            coursesCursor.getString(
+                                coursesCursor.getColumnIndexOrThrow(
+                                    "groups"
+                                )
+                            )
+                        ),
                         name = coursesCursor.getString(coursesCursor.getColumnIndexOrThrow("name")),
                     )
                 )
