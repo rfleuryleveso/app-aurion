@@ -1,17 +1,17 @@
 package fr.rflv.appaurion.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import fr.rflv.appaurion.adapters.ScheduleAdapter
 import fr.rflv.appaurion.R
+import fr.rflv.appaurion.adapters.ScheduleAdapter
 import fr.rflv.appaurion.services.aurion.data.Course
 import fr.rflv.appaurion.viewmodels.ScheduleViewModel
 import kotlinx.coroutines.launch
@@ -38,7 +38,7 @@ class ScheduleRecyclerViewFragment : Fragment() {
 
     private lateinit var adapter: ScheduleAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var courses: Array<Course>
+    private var courses: Array<Course> = arrayOf();
 
     private val scheduleViewModel by viewModel<ScheduleViewModel>()
 
@@ -48,6 +48,16 @@ class ScheduleRecyclerViewFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        lifecycleScope.launch() {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                scheduleViewModel.uiState.collect {
+                    courses = it.courses
+                    adapter = ScheduleAdapter(courses)
+                    recyclerView.adapter = adapter
+                }
+            }
+        }
+
     }
 
     override fun onCreateView(
@@ -85,24 +95,17 @@ class ScheduleRecyclerViewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_schedule)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = ScheduleAdapter(courses)
-        recyclerView.adapter = adapter
+
+
     }
 
-    private fun initializeData()
-    {
+    private fun initializeData() {
         this.scheduleViewModel.getCoursesForDay(
             Clock.System.now().toJavaInstant().atZone(
                 ZoneId.systemDefault()
             ).toLocalDate().toKotlinLocalDate()
         )
 
-        lifecycleScope.launch() {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                scheduleViewModel.uiState.collect {
-                    courses = it.courses
-                }
-            }
-        }
+
     }
 }
