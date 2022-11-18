@@ -24,10 +24,10 @@ class MarksDatabaseHelper(private val context: Context) {
         db.close()
     }
 
-    fun getMarks(): Array<Mark> {
+    fun getMarks(): List<Mark> {
         val db = this.database.writableDatabase
         val marksCursor = db.query("marks", null, null, null, null, null, null)
-        val marks = arrayOf<Mark>();
+        val marks = listOf<Mark>();
         marksCursor!!.moveToFirst();
         if (marksCursor.count > 0) {
             do {

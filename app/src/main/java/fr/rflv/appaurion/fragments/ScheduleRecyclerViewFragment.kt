@@ -15,11 +15,9 @@ import fr.rflv.appaurion.adapters.ScheduleAdapter
 import fr.rflv.appaurion.services.aurion.data.Course
 import fr.rflv.appaurion.viewmodels.ScheduleViewModel
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
-import kotlinx.datetime.toJavaInstant
 import kotlinx.datetime.toKotlinLocalDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.ZoneId
+import java.time.LocalDate
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,11 +99,7 @@ class ScheduleRecyclerViewFragment : Fragment() {
 
     private fun initializeData() {
         this.scheduleViewModel.getCoursesForDay(
-            Clock.System.now().toJavaInstant().atZone(
-                ZoneId.systemDefault()
-            ).toLocalDate().toKotlinLocalDate()
+            LocalDate.now().toKotlinLocalDate()
         )
-
-
     }
 }

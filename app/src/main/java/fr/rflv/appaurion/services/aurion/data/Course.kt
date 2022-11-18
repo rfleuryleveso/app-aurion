@@ -23,6 +23,6 @@ data class Course(
         courseType = iCourse.courseType,
         rooms = iCourse.rooms,
         groups = iCourse.groups,
-        name = iCourse.id
+        name = iCourse.name
     )
 }

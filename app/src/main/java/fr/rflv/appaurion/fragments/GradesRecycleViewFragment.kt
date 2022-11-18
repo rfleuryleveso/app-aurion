@@ -1,28 +1,21 @@
 package fr.rflv.appaurion.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.rflv.appaurion.R
 import fr.rflv.appaurion.adapters.GradesAdapter
-import fr.rflv.appaurion.services.aurion.data.Course
 import fr.rflv.appaurion.services.aurion.data.Mark
 import fr.rflv.appaurion.viewmodels.GradesViewModel
-import fr.rflv.appaurion.viewmodels.ScheduleViewModel
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
-import kotlinx.datetime.toJavaInstant
-import kotlinx.datetime.toKotlinLocalDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.ZoneId
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,7 +34,7 @@ class GradesRecycleViewFragment : Fragment() {
 
     private lateinit var adapter: GradesAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var grades: Array<Mark>
+    private var grades: Array<Mark> = arrayOf()
 
     private val scheduleViewModel by viewModel<GradesViewModel>()
 
@@ -50,6 +43,16 @@ class GradesRecycleViewFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+        }
+
+        lifecycleScope.launch() {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                scheduleViewModel.uiState.collect {
+                    grades = it.grades
+                    adapter = GradesAdapter(grades)
+                    recyclerView.adapter = adapter
+                }
+            }
         }
     }
 
@@ -88,20 +91,10 @@ class GradesRecycleViewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler_view_grades)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = GradesAdapter(grades)
-        recyclerView.adapter = adapter
     }
 
-    private fun initializeData()
-    {
+    private fun initializeData() {
         this.scheduleViewModel.loadMarks()
 
-        lifecycleScope.launch() {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                scheduleViewModel.uiState.collect {
-                    grades = it.grades
-                }
-            }
-        }
     }
 }

@@ -2,6 +2,7 @@ package fr.rflv.appaurion.services.aurion
 
 import android.content.Context
 import fr.rflv.appaurion.services.aurion.data.Course
+import fr.rflv.appaurion.services.aurion.data.Mark
 import fr.rflv.appaurion.services.aurion.interfaces.IAurion
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
 import fr.rflv.appaurion.services.database.CoursesDatabaseHelper
@@ -16,11 +17,12 @@ class AurionImporter(
     private val aurionService: IAurion by inject();
     private val aurionRequest: IAurionRequest by inject();
 
-    fun importFromAurion(
+    fun importScheduleFromAurion(
         login: String, password: String,
         startDate: LocalDateTime,
         endDate: LocalDateTime
     ): List<Course> {
+        aurionRequest.Clear();
         val result = aurionRequest.Login(login, password)
         aurionRequest.GetHomePage();
         aurionRequest.SwitchToPlanningView();
@@ -69,6 +71,17 @@ class AurionImporter(
         val db = CoursesDatabaseHelper(context);
         mappedCourses.forEach { db.addCourse(it) }
         return mappedCourses;
+
+    }
+
+    fun importGradesFromAurion(
+        login: String, password: String
+    ): List<Mark> {
+        aurionRequest.Clear();
+        val result = aurionRequest.Login(login, password)
+        aurionRequest.GetHomePage();
+        val grades = aurionRequest.GetGrades();
+        return listOf();
 
     }
 }

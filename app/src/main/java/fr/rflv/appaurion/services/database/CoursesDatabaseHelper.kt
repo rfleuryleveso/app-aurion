@@ -8,6 +8,7 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonPrimitive
 import org.koin.core.annotation.Single
+import java.lang.Exception
 
 @Single
 class CoursesDatabaseHelper(private val context: Context) {
@@ -30,8 +31,8 @@ class CoursesDatabaseHelper(private val context: Context) {
             values.put("name", course.name)
 
             db.insert("courses", null, values)
-        } catch (e: SQLiteConstraintException) {
-            print("Error while inserting, constraint failed");
+        } catch (e: Exception) {
+            print("Error while inserting");
         } finally {
             db.close()
         }

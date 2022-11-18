@@ -25,24 +25,27 @@ class Database(context: Context) :
     groups        TEXT,
     name          TEXT
 );
+"""
 
-create unique index courses_id_uindex
-    on courses (id);
 
-create table marks
+        // we are calling sqlite
+        // method for executing our query
+        db.execSQL(query)
+
+        val createIndexQuery = """create unique index courses_id_uindex
+    on courses (id);"""
+
+        db.execSQL(createIndexQuery);
+
+        val queryCreateMarks = """create table marks
 (
     identifier  TEXT not null,
     name        TEXT,
     date        TEXT,
     mark        REAL,
     coefficient REAL
-);
-
-"""
-
-        // we are calling sqlite
-        // method for executing our query
-        db.execSQL(query)
+);"""
+        db.execSQL(queryCreateMarks)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, p1: Int, p2: Int) {

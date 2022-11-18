@@ -3,7 +3,10 @@ package fr.rflv.appaurion.services.aurion.impl
 import fr.rflv.appaurion.services.aurion.impl.parsers.*
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionState
-import kotlinx.datetime.*
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toJavaLocalDateTime
 import okhttp3.FormBody
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
@@ -19,7 +22,7 @@ import java.time.format.DateTimeFormatter
 class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest {
     private val client: OkHttpClient;
     private val cookieManager = CookieManager();
-
+    private var lastUrl: String = "";
 
     init {
         // Enforce the CookiePolicy
@@ -31,6 +34,10 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             .followRedirects(true)
             .cookieJar(JavaNetCookieJar(cookieManager))
             .build();
+
+    }
+    override fun Clear() {
+        cookieManager.cookieStore.removeAll();
     }
 
     override fun Login(email: String, password: String): Boolean {
@@ -54,6 +61,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
                 val doc = Jsoup.parse(body);
                 val viewStateValue = extractViewState(doc);
                 this.aurionState.setState(viewStateValue);
+                this.lastUrl = "https://aurion.junia.com/";
                 response.close();
             }
         return true;
@@ -63,9 +71,9 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
     override fun GetHomePage(): Boolean {
         val request = Request.Builder()
             .get()
-            .url("https://aurion.junia.com/")
+            .url("https://aurion.junia.com/faces/MainMenuPage.xhtml")
             .build()
-
+        this.lastUrl = "https://aurion.junia.com/faces/MainMenuPage.xhtml";
         client.newCall(request).execute();
         return true;
     }
@@ -84,7 +92,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
 
         val request = Request.Builder()
             .post(formBody)
-            .url("https://aurion.junia.com/faces/MainMenuPage.xhtml")
+            .url(this.lastUrl)
             .build()
 
         client.newCall(request).execute().use { response ->
@@ -92,10 +100,12 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             val body: String = response.body!!.string();
             val doc = Jsoup.parse(body);
             val viewStateValue = extractViewState(doc);
+            this.lastUrl = "https://aurion.junia.com/faces/Planning.xhtml";
             this.aurionState.setState(viewStateValue);
             response.close();
         }
     }
+
 
     override fun GetPlanningPartial(
         start: LocalDateTime,
@@ -139,13 +149,46 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             val body: String = response.body!!.string();
             val partialPlanningResult = parsePartialPlanning(body);
             this.aurionState.setState(partialPlanningResult.viewState)
+            this.lastUrl = "https://aurion.junia.com/faces/Planning.xhtml";
             response.close();
             return partialPlanningResult.courses;
         }
     }
 
+    override fun GetGrades(
+
+    ): ArrayList<CoursesListCourse> {
+
+        val formBody = FormBody.Builder()
+            .add("form", "form")
+            .add("form:largeurDivCenter", "1219")
+            .add("form:sauvegarde", "")
+            .add("form:j_idt790_focus", "")
+            .add("form:j_idt790_input", "44323")
+            .add("javax.faces.ViewState", this.aurionState.getState())
+            .add("form:sidebar", "form:sidebar")
+            .add("form:sidebar_menuid", "2_1")
+            .build()
+
+        val request = Request.Builder()
+            .post(formBody)
+            .url(this.lastUrl)
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+            val body: String = response.body!!.string();
+            val doc = Jsoup.parse(body);
+            val viewStateValue = extractViewState(doc);
+            this.aurionState.setState(viewStateValue);
+            this.lastUrl = "https://aurion.junia.com/faces/ChoixIndividu.xhtml";
+            response.close();
+            return arrayListOf<CoursesListCourse>();
+        }
+    }
+
     override fun GetPlanningEventDetail(eventId: String): ParseEventPartialResult {
-       val formBody = FormBody.Builder()
+        val formBody = FormBody.Builder()
             .add("javax.faces.partial.ajax", "true")
             .add("javax.faces.source", "form:j_idt117")
             .add("javax.faces.partial.execute", "form:j_idt117")

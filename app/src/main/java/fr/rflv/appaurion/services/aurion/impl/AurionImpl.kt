@@ -7,8 +7,10 @@ import fr.rflv.appaurion.services.aurion.data.Course
 import fr.rflv.appaurion.services.aurion.data.Mark
 import fr.rflv.appaurion.services.aurion.interfaces.IAurion
 import fr.rflv.appaurion.services.aurion.interfaces.IAurionRequest
+import fr.rflv.appaurion.services.aurion.mock.AurionMock
 import fr.rflv.appaurion.services.database.CoursesDatabaseHelper
 import fr.rflv.appaurion.services.database.MarksDatabaseHelper
+import kotlinx.coroutines.delay
 import kotlinx.datetime.*
 import org.koin.core.annotation.Single
 
@@ -19,11 +21,12 @@ open class AurionImpl(
     private val coursesDatabaseHelper: CoursesDatabaseHelper,
     private val marksDatabaseHelper: MarksDatabaseHelper,
     private val aurionRequest: IAurionRequest,
-    private val aurionImporter: AurionImporter
+    private val aurionImporter: AurionImporter,
+
 ) : IAurion {
     override fun getAllCourses(): List<Course> {
         var courses = this.coursesDatabaseHelper.getCourses();
-        if (courses.count() == 0) {
+        if (courses.isEmpty()) {
             val nowInstant = Clock.System.now();
             val minus2Months =
                 nowInstant.minus(1, DateTimeUnit.WEEK, TimeZone.UTC)
@@ -46,7 +49,12 @@ open class AurionImpl(
 
             if (email != null && password != null) {
                 courses =
-                    aurionImporter.importFromAurion(email, password, minus2Months, plus2Months)
+                    aurionImporter.importScheduleFromAurion(
+                        email,
+                        password,
+                        minus2Months,
+                        plus2Months
+                    )
                         .toList()
             };
         }
@@ -54,7 +62,25 @@ open class AurionImpl(
     }
 
     override fun getAllMarks(): List<Mark> {
-        return this.marksDatabaseHelper.getMarks().toList();
+        var marks = this.marksDatabaseHelper.getMarks();
+        if (marks.isEmpty()) {
+            marks = AurionMock().getAllMarks()
+            /* val sharedPref = appContext.getSharedPreferences(
+                appContext.getString(R.string.shared_preferences_file),
+                Context.MODE_PRIVATE
+            )
+            val email =
+                sharedPref.getString(appContext.getString(R.string.pref_email_key), "")
+            val password =
+                sharedPref.getString(appContext.getString(R.string.pref_password_key), "")
+
+            if (email != null && password != null) {
+                marks =
+                    aurionImporter.importGradesFromAurion(email, password)
+                        .toList()
+            };*/
+        }
+        return marks;
     }
 
     override fun hasSavedLogins(): Boolean {

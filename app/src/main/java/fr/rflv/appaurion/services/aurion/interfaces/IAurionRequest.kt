@@ -11,4 +11,6 @@ interface IAurionRequest {
     fun SwitchToPlanningView();
     fun GetPlanningPartial(start: LocalDateTime, end: LocalDateTime): ArrayList<CoursesListCourse>;
     fun GetPlanningEventDetail(eventId: String): ParseEventPartialResult;
+    fun GetGrades(): ArrayList<CoursesListCourse>
+    fun Clear()
 }

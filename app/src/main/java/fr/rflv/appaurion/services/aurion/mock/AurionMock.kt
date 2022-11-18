@@ -17,7 +17,7 @@ open class AurionMock : IAurion {
     }
 
     override fun getAllCourses(): List<Course> {
-        val cours = arrayOf<Course>();
+        val cours = mutableListOf<Course>();
 
         val ICourse1 = Course(object : ICourse {
             override val id = "1"
@@ -32,7 +32,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         })
-        cours.plus(ICourse1);
+        cours.add(ICourse1);
 
         val ICourse2 = Course(object : ICourse {
             override val id = "2"
@@ -141,7 +141,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Réunion"
         })
-        cours.plus(ICourse2);
+        cours.add(ICourse2);
 
         val ICourse3 = Course(object : ICourse {
             override val id = "3"
@@ -156,7 +156,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         })
-        cours.plus(ICourse3);
+        cours.add(ICourse3);
 
         val ICourse4 = Course(object : ICourse {
             override val id = "4"
@@ -229,7 +229,7 @@ open class AurionMock : IAurion {
             override val groups: Array<String> = arrayOf("M1- Contrôle de Gestion - Groupe A")
             override val name: String = "Module FHES Contrôle de Gestion"
         })
-        cours.plus(ICourse4);
+        cours.add(ICourse4);
 
         val ICourse5 = Course(object : ICourse {
             override val id = "5"
@@ -265,7 +265,7 @@ open class AurionMock : IAurion {
                 arrayOf("M1 - Anglais Communication Skills Groupe A (niv B2 déjà)")
             override val name: String = "Module d'Anglais "
         })
-        cours.plus(ICourse5);
+        cours.add(ICourse5);
 
         val ICourse6 = Course(object : ICourse {
             override val id = "6"
@@ -320,7 +320,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Intelligence Artificielle"
         })
-        cours.plus(ICourse6);
+        cours.add(ICourse6);
 
         val ICourse7 = Course(object : ICourse {
             override val id = "7"
@@ -335,7 +335,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Network"
         })
-        cours.plus(ICourse7);
+        cours.add(ICourse7);
 
         val ICourse8 = Course(object : ICourse {
             override val id = "8"
@@ -350,7 +350,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Network"
         })
-        cours.plus(ICourse8);
+        cours.add(ICourse8);
 
         val ICourse9 = Course(object : ICourse {
             override val id = "9"
@@ -424,7 +424,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Python Scripting"
         })
-        cours.plus(ICourse9);
+        cours.add(ICourse9);
 
         val ICourse10 = Course(object : ICourse {
             override val id = "10"
@@ -475,7 +475,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module d'Ouverture Intercultural Communication (S1)"
         })
-        cours.plus(ICourse10);
+        cours.add(ICourse10);
 
         val ICourse11 = Course(object : ICourse {
             override val id = "11"
@@ -497,7 +497,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module de Base Développement Android"
         })
-        cours.plus(ICourse11);
+        cours.add(ICourse11);
 
         val ICourse12 = Course(object : ICourse {
             override val id = "12"
@@ -512,7 +512,7 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         })
-        cours.plus(ICourse12);
+        cours.add(ICourse12);
 
         val ICourse13 = Course(object : ICourse {
             override val id = "12"
@@ -527,13 +527,13 @@ open class AurionMock : IAurion {
                 arrayOf("Promotion 2ème année de Cycle Ingénieur (M1) 2022-2023")
             override val name: String = "Module Game Development - Unity 3D"
         })
-        cours.plus(ICourse13);
+        cours.add(ICourse13);
 
-        return cours.toList();
+        return cours;
     }
 
     override fun getAllMarks(): List<Mark> {
-        val IMarks = arrayOf<Mark>();
+        val IMarks = mutableListOf<Mark>();
 
         val IMark1 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 6, 21)
@@ -542,7 +542,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 18.00f
             override val coefficient: Number = 1
         })
-        IMarks.plus(IMark1);
+        IMarks.add(IMark1);
 
         val IMark2 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 19)
@@ -551,7 +551,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 12.00f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark2);
+        IMarks.add(IMark2);
 
         val IMark3 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 18)
@@ -560,7 +560,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 14.15f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark3);
+        IMarks.add(IMark3);
 
         val IMark4 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 18)
@@ -569,7 +569,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 8.74f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark4);
+        IMarks.add(IMark4);
 
         val IMark5 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 17)
@@ -578,7 +578,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 14.50f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark5);
+        IMarks.add(IMark5);
 
         val IMark6 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 16)
@@ -587,7 +587,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 20.00f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark6);
+        IMarks.add(IMark6);
 
         val IMark7 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 16)
@@ -597,7 +597,7 @@ open class AurionMock : IAurion {
             override val mark: Float = 19.00f
             override val coefficient: Number = 100
         })
-        IMarks.plus(IMark7);
+        IMarks.add(IMark7);
 
         val IMark8 = Mark(object : IMark {
             override val date: LocalDate = LocalDate(2022, 5, 16)
@@ -606,9 +606,9 @@ open class AurionMock : IAurion {
             override val mark: Float = 15.00f
             override val coefficient: Number = 1
         })
-        IMarks.plus(IMark8);
+        IMarks.add(IMark8);
 
-        return IMarks.toList();
+        return IMarks;
     }
 
     override fun hasSavedLogins(): Boolean {
