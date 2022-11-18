@@ -41,7 +41,7 @@
         android:layout_marginEnd="27dp"
         android:background="@drawable/rounded"
         android:backgroundTint="#87BEB9"
-        android:text="AD"
+        android:text="RF"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"

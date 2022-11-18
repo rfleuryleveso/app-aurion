@@ -614,4 +614,8 @@ open class AurionMock : IAurion {
     override fun hasSavedLogins(): Boolean {
         TODO("Not yet implemented")
     }
+
+    override fun logout() {
+        TODO("Not yet implemented")
+    }
 }

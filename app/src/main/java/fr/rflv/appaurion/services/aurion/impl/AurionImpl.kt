@@ -97,6 +97,18 @@ open class AurionImpl(
 
     }
 
+    override fun logout() {
+        val sharedPref = appContext.getSharedPreferences(
+            appContext.getString(R.string.shared_preferences_file),
+            Context.MODE_PRIVATE
+        )
+        with(sharedPref.edit()) {
+            clear()
+            commit()
+        }
+
+    }
+
     override fun login(username: String, password: String): Boolean {
         val result = this.aurionRequest.Login(username, password);
         if (result) {

@@ -43,7 +43,7 @@
         android:background="@drawable/rounded"
         android:backgroundTint="#87BEB9"
         android:gravity="center"
-        android:text="AD"
+        android:text="RF"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"

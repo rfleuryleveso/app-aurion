@@ -19,7 +19,6 @@ data class ScheduleViewModelState(
 )
 
 class ScheduleViewModel(private val aurion: IAurion) : ViewModel() {
-    // Expose screen UI state
     private val _uiState = MutableStateFlow(ScheduleViewModelState())
     val uiState: StateFlow<ScheduleViewModelState> = _uiState.asStateFlow()
 

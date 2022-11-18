@@ -13,14 +13,14 @@ import kotlinx.coroutines.launch
 data class LoginViewModelState(
     val isLoading: Boolean = false,
     val isLoggedIn: Boolean = false,
+    val hasLoginError: Boolean = false
 )
 
 class LoginViewModel(private val aurion: IAurion) : ViewModel() {
-    // Expose screen UI state
     private val _uiState = MutableStateFlow(LoginViewModelState())
     val uiState: StateFlow<LoginViewModelState> = _uiState.asStateFlow()
 
-    public fun CheckLogin() {
+    public fun checkLogin() {
         if (aurion.hasSavedLogins()) {
             _uiState.update { currentState ->
                 currentState.copy(
@@ -31,7 +31,15 @@ class LoginViewModel(private val aurion: IAurion) : ViewModel() {
         }
     }
 
-    public fun Login(email: String, password: String) {
+    public fun acknowledgeLoginError() {
+        _uiState.update { currentState ->
+            currentState.copy(
+                hasLoginError = false,
+            )
+        }
+    }
+
+    public fun login(email: String, password: String) {
         _uiState.update { currentState ->
             currentState.copy(
                 isLoading = true,
@@ -43,7 +51,8 @@ class LoginViewModel(private val aurion: IAurion) : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     isLoading = false,
-                    isLoggedIn = result
+                    isLoggedIn = result,
+                    hasLoginError = !result
                 )
             }
         }

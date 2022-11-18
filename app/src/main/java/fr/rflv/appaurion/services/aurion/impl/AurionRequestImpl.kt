@@ -36,6 +36,7 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             .build();
 
     }
+
     override fun Clear() {
         cookieManager.cookieStore.removeAll();
     }
@@ -57,15 +58,21 @@ class AurionRequestImpl(private val aurionState: IAurionState) : IAurionRequest 
             .execute()
             .use { response ->
                 if (!response.isSuccessful) throw IOException("Unexpected code $response")
-                val body: String = response.body!!.string();
-                val doc = Jsoup.parse(body);
-                val viewStateValue = extractViewState(doc);
-                this.aurionState.setState(viewStateValue);
-                this.lastUrl = "https://aurion.junia.com/";
-                response.close();
-            }
-        return true;
+                val finalUrl = response.networkResponse?.request?.url;
+                if (finalUrl != null && finalUrl.toString().endsWith("/login")) {
+                    response.close();
+                    return false;
+                } else {
+                    val body: String = response.body!!.string();
+                    val doc = Jsoup.parse(body);
+                    val viewStateValue = extractViewState(doc);
+                    this.aurionState.setState(viewStateValue);
+                    this.lastUrl = "https://aurion.junia.com/";
+                    response.close();
+                    return true;
+                }
 
+            }
     }
 
     override fun GetHomePage(): Boolean {

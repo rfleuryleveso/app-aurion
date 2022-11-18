@@ -17,7 +17,6 @@ data class GradesViewModelState(
 )
 
 class GradesViewModel(private val aurion: IAurion) : ViewModel() {
-    // Expose screen UI state
     private val _uiState = MutableStateFlow(GradesViewModelState())
     val uiState: StateFlow<GradesViewModelState> = _uiState.asStateFlow()
 
@@ -30,7 +29,6 @@ class GradesViewModel(private val aurion: IAurion) : ViewModel() {
                 )
             }
         }
-
 
     }
 }

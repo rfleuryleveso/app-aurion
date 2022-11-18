@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -35,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         passwordField = findViewById(R.id.editTextTextPassword)
         progress = findViewById(R.id.progressBar)
 
-        this.loginViewModel.CheckLogin();
+        this.loginViewModel.checkLogin();
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -44,6 +45,14 @@ class LoginActivity : AppCompatActivity() {
                         val connectToAurionIntent: Intent =
                             Intent(applicationContext, ScheduleActivity::class.java)
                         startActivity(connectToAurionIntent)
+                    }
+                    if (it.hasLoginError) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Wrong username/password",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        loginViewModel.acknowledgeLoginError();
                     }
                     if (it.isLoading) {
                         loginButton.visibility = View.GONE
@@ -58,6 +67,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun connectionToAurion() {
-        this.loginViewModel.Login(emailField.text.toString(), passwordField.text.toString());
+        this.loginViewModel.login(emailField.text.toString(), passwordField.text.toString());
     }
 }

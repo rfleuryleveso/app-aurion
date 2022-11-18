@@ -10,4 +10,5 @@ interface IAurion {
     fun getAllCourses(): List<Course>;
     fun getAllMarks(): List<Mark>;
     fun hasSavedLogins(): Boolean;
+    fun logout();
 }

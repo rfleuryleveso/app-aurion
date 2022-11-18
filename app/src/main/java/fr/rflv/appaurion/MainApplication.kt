@@ -9,12 +9,11 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Start Koin dependency injection
         startKoin {
-            androidLogger()
-            androidContext(this@MainApplication)
-            modules(AppModule)
+            androidLogger() // Integrate with Android logger
+            androidContext(this@MainApplication) // Inject application context
+            modules(AppModule) // Inject modules, and bind their dependencies
         }
-
-
     }
 }
