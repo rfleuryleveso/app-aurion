@@ -275,6 +275,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="14dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:layout_constraintStart_toEndOf="@+id/fridayCard"
@@ -309,6 +310,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="12dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -331,8 +333,8 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:textColor="#212525"
             android:text=""
+            android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
