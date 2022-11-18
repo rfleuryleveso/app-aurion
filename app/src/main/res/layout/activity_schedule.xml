@@ -333,11 +333,11 @@
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
-    <!--fragment
+    <fragment
         android:name="fr.rflv.appaurion.fragments.ScheduleFragment"
         android:id="@+id/scheduleFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" /-->
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/deconnection"
