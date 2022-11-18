@@ -9,16 +9,18 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="419dp"
-        android:layout_height="550dp"
-        android:layout_marginTop="105dp"
+        android:layout_width="0dp"
+        android:layout_height="510dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/deconnection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/initials"
         app:srcCompat="@drawable/back" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/dayDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -51,29 +53,29 @@
         android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
         android:layout_marginTop="35dp"
-        android:text="Vend"
+        android:text=""
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/month"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
         android:layout_marginTop="1dp"
-        android:text="Nov 2022"
+        android:text=""
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/day"
         app:layout_constraintTop_toBottomOf="@+id/day" />
 
     <FrameLayout
         android:id="@+id/frame_layout_grades"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="460dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView"

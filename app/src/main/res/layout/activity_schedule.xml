@@ -241,7 +241,7 @@
         android:layout_height="63dp"
         android:layout_marginStart="13dp"
         android:layout_marginTop="14dp"
-        app:cardBackgroundColor="#E91E63"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
         app:layout_constraintStart_toEndOf="@+id/thursdayCard"
