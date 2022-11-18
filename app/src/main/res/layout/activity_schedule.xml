@@ -18,12 +18,12 @@
         app:srcCompat="@drawable/back" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/dayDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="25dp"
-        android:text="18"
+        android:text=""
         android:textColor="#212525"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -51,23 +51,23 @@
         android:id="@+id/day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
         android:layout_marginTop="35dp"
-        android:text="Vend"
+        android:text=""
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/month"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
         android:layout_marginTop="1dp"
-        android:text="Nov 2022"
+        android:text=""
         android:textColor="#BBC0CC"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/day"
         app:layout_constraintTop_toBottomOf="@+id/day" />
 
     <TextView
@@ -124,7 +124,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="14"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -158,7 +158,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="15"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -192,7 +192,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="16"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -226,7 +226,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="17"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -259,7 +259,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="18"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -292,7 +292,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="19"
+            android:text=""
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -327,17 +327,17 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="20"
+            android:text="s"
             android:textColor="#212525"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
 
-    <fragment
+    <!--fragment
         android:name="fr.rflv.appaurion.fragments.ScheduleFragment"
         android:id="@+id/scheduleFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" /-->
 
     <ImageView
         android:id="@+id/deconnection"
