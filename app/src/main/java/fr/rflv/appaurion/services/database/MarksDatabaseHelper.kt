@@ -27,11 +27,11 @@ class MarksDatabaseHelper(private val context: Context) {
     fun getMarks(): List<Mark> {
         val db = this.database.writableDatabase
         val marksCursor = db.query("marks", null, null, null, null, null, null)
-        val marks = listOf<Mark>();
+        val marks = mutableListOf<Mark>();
         marksCursor!!.moveToFirst();
         if (marksCursor.count > 0) {
             do {
-                marks.plus(
+                marks.add(
                     Mark(
                         id = marksCursor.getString(marksCursor.getColumnIndexOrThrow("id")),
                         date = LocalDate.parse(
