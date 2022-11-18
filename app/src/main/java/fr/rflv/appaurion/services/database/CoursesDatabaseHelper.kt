@@ -2,6 +2,7 @@ package fr.rflv.appaurion.services.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import fr.rflv.appaurion.services.aurion.data.Course
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.JsonArray
@@ -15,19 +16,27 @@ class CoursesDatabaseHelper(private val context: Context) {
 
     // This method is for adding data in our database
     fun addCourse(course: Course) {
-        val values = ContentValues()
-        values.put("id", course.id)
-        values.put("startDateTime", course.startDateTime.toString())
-        values.put("endDateTime", course.endDateTime.toString())
-        values.put("teachers", JsonArray(course.teachers.map { JsonPrimitive(it) }).toString())
-        values.put("students", JsonArray(course.students.map { JsonPrimitive(it) }).toString())
-        values.put("courseType", course.courseType)
-        values.put("rooms", JsonArray(course.rooms.map { JsonPrimitive(it) }).toString())
-        values.put("groups", JsonArray(course.groups.map { JsonPrimitive(it) }).toString())
-        values.put("name", course.name)
         val db = this.database.writableDatabase
-        db.insert("courses", null, values)
-        db.close()
+        try {
+            val values = ContentValues()
+            values.put("id", course.id)
+            values.put("startDateTime", course.startDateTime.toString())
+            values.put("endDateTime", course.endDateTime.toString())
+            values.put("teachers", JsonArray(course.teachers.map { JsonPrimitive(it) }).toString())
+            values.put("students", JsonArray(course.students.map { JsonPrimitive(it) }).toString())
+            values.put("courseType", course.courseType)
+            values.put("rooms", JsonArray(course.rooms.map { JsonPrimitive(it) }).toString())
+            values.put("groups", JsonArray(course.groups.map { JsonPrimitive(it) }).toString())
+            values.put("name", course.name)
+
+            db.insert("courses", null, values)
+        } catch (e: SQLiteConstraintException) {
+            print("Error while inserting, constraint failed");
+        } finally {
+            db.close()
+        }
+
+
     }
 
     fun getCourses(): List<Course> {
