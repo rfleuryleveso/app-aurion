@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:text="Heure"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:text="Cours"
         android:textColor="#BBC0CC"
         android:textSize="16sp"
@@ -327,8 +327,8 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:text="s"
             android:textColor="#212525"
+            android:text=""
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
