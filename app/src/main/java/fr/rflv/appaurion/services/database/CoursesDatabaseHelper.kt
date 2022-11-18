@@ -43,11 +43,11 @@ class CoursesDatabaseHelper(private val context: Context) {
     fun getCourses(): List<Course> {
         val db = this.database.writableDatabase
         val coursesCursor = db.query("courses", null, null, null, null, null, null)
-        val courses = listOf<Course>();
+        val courses = mutableListOf<Course>();
         coursesCursor!!.moveToFirst();
         if (coursesCursor.count > 0) {
             do {
-                courses.plus(
+                courses.add(
                     Course(
                         id = coursesCursor.getString(coursesCursor.getColumnIndexOrThrow("id")),
                         startDateTime = LocalDateTime.parse(
